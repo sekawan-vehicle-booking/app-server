@@ -6,7 +6,6 @@ import RepoUsers from "../../repositories/RepoUsers";
 import ServiceUsers from "../../services/ServiceUsers";
 import ControllerUsers from "../../controllers/ControllerUsers";
 
-// testng
 const router = Router();
 
 // Vehicles
