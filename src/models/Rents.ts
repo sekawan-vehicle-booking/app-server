@@ -13,7 +13,7 @@ export interface IRent {
   status: "accepted" | "rejected";
   startUsageDate: string;
   endUsageDate: string;
-  oilConsumption: number;
+  oilConsumption?: number;
   notes?: string;
 
   created_at?: string;
