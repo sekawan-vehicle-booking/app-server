@@ -20,6 +20,11 @@ class ServiceVehicles {
     return vehicle;
   }
 
+  async create(params: IVehicle) {
+    const vehicle = this._repoVehicles.create(params);
+    return vehicle;
+  }
+
   //   #region Update
   async update(id: string, params: IVehicle) {
     const vehicle = this._repoVehicles.update(id, params);
