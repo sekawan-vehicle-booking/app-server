@@ -18,6 +18,11 @@ export default class RepoRents {
     return rents;
   }
 
+  async findByUserId(idUser: string) {
+    const rents = await Rents.query().where({ idSupervisor: idUser });
+    return rents;
+  }
+
   async create(params: IRent) {
     const rent = await Rents.query().insert(params);
     return rent;

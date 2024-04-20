@@ -24,8 +24,17 @@ export default class ServiceRents {
     return rents;
   }
 
+  async findByUserId(idUser: string) {
+    const rents = await this._repoRents.findByUserId(idUser);
+    return rents;
+  }
+
   async create(params: IRent) {
-    const rent = await this._repoRents.create({ ...params, id: nanoid(16) });
+    const rent = await this._repoRents.create({
+      ...params,
+      id: nanoid(16),
+      status: "pending",
+    });
     return rent;
   }
 

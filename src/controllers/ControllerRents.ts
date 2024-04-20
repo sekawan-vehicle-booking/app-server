@@ -36,6 +36,90 @@ export default class ControllerRents {
     };
   }
 
+  findRent() {
+    return async (req: Request, res: Response) => {
+      try {
+        const id = req.params?.id;
+        const rent = await this._serviceRents.findById(id);
+
+        if (!rent) {
+          return res.status(404).json({
+            success: false,
+            message: "Data tidak ditemukan",
+          });
+        }
+
+        return res.status(200).json({
+          success: true,
+          message: "Data berhasil ditemukan",
+          data: rent,
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          success: false,
+          message: "Server error",
+        });
+      }
+    };
+  }
+
+  findVehicleRents() {
+    return async (req: Request, res: Response) => {
+      try {
+        const id = req.params?.id;
+        const rent = await this._serviceRents.findByCarId(id);
+
+        if (!rent) {
+          return res.status(404).json({
+            success: false,
+            message: "Data tidak ditemukan",
+          });
+        }
+
+        return res.status(200).json({
+          success: true,
+          message: "Data berhasil ditemukan",
+          data: rent,
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          success: false,
+          message: "Server error",
+        });
+      }
+    };
+  }
+
+  findUserRents() {
+    return async (req: Request, res: Response) => {
+      try {
+        const id = req.params?.id;
+        const rent = await this._serviceRents.findByUserId(id);
+
+        if (!rent) {
+          return res.status(404).json({
+            success: false,
+            message: "Data tidak ditemukan",
+          });
+        }
+
+        return res.status(200).json({
+          success: true,
+          message: "Data berhasil ditemukan",
+          data: rent,
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          success: false,
+          message: "Server error",
+        });
+      }
+    };
+  }
+
   create() {
     return async (req: Request, res: Response) => {
       try {

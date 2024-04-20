@@ -10,7 +10,7 @@ export interface IRent {
   idAdmin: string;
   idSupervisor: string;
   purpose: string;
-  status: "accepted" | "rejected";
+  status: "pending" | "accepted" | "rejected" | "finished";
   startUsageDate: string;
   endUsageDate: string;
   oilConsumption?: number;
