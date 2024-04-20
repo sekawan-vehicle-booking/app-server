@@ -3,8 +3,8 @@ import users from "../data/users";
 
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
-  await knex("table_name").del();
+  await knex("users").del();
 
   // Inserts seed entries
-  await knex("table_name").insert(users);
+  await knex("users").insert(users);
 }
