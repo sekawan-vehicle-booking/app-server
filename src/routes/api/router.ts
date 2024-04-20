@@ -1,6 +1,14 @@
 import { Router, Request, Response } from "express";
+import RepoVehicles from "../../repositories/RepoVehicles";
+import ServiceVehicles from "../../services/ServiceVehicles";
+import ControllerVehicles from "../../controllers/ControllerVehicles";
 
 const router = Router();
+
+// Vehicles
+const repoVehicles = new RepoVehicles();
+const serviceVehicles = new ServiceVehicles(repoVehicles);
+const controllerVehicles = new ControllerVehicles(serviceVehicles);
 
 // #region Authentication
 router.post("/auth/register");
@@ -13,11 +21,11 @@ router.put("/users/:id");
 router.delete("/users/:id");
 
 // #region Vehicles
-router.get("/vehicles");
-router.get("/vehicles/:id");
-router.post("/vehicles");
-router.put("/vehicles/:id");
-router.delete("/vehicles/:id");
+router.get("/vehicles", controllerVehicles.list());
+router.get("/vehicles/:id", controllerVehicles.find());
+router.post("/vehicles", controllerVehicles.create());
+router.put("/vehicles/:id", controllerVehicles.update());
+router.delete("/vehicles/:id", controllerVehicles.delete());
 
 // #region Vehicle Services
 router.get("/services");
