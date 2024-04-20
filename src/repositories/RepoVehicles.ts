@@ -11,7 +11,7 @@ class RepoVehicles {
 
   //   #region Create
   async create(params: IVehicle) {
-    const vehicle = Vehicles.query().insert(params);
+    const vehicle = Vehicles.query().insert({ ...params });
     return vehicle;
   }
 
