@@ -3,7 +3,7 @@ import { Model } from "objection";
 
 Model.knex(database);
 
-export interface IRents {
+export interface IRent {
   id?: string;
   idCar: string;
   idEmployee: string;
