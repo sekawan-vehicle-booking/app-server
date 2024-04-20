@@ -27,3 +27,5 @@ class RepoVehicles {
     return vehicle;
   }
 }
+
+export default RepoVehicles;
