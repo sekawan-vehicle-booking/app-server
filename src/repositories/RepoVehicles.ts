@@ -9,6 +9,12 @@ class RepoVehicles {
     return vehicles;
   }
 
+  //   #region Create
+  async create(params: IVehicle) {
+    const vehicle = Vehicles.query().insert(params);
+    return vehicle;
+  }
+
   //   #region Find
   async findById(id: string) {
     const vehicle = Vehicles.query().findById(id);
