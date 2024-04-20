@@ -5,7 +5,7 @@ Model.knex(database);
 
 export interface IRent {
   id?: string;
-  idCar: string;
+  idVehicle: string;
   idEmployee: string;
   idAdmin: string;
   idSupervisor: string;
