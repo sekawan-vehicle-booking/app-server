@@ -19,7 +19,7 @@ const serviceUsers = new ServiceUsers(repoUsers);
 const controllerUsers = new ControllerUsers(serviceUsers);
 
 // #region Authentication
-router.post("/auth/register");
+router.post("/auth/register", controllerUsers.register());
 router.post("/auth/login", controllerUsers.login());
 
 // #region Users

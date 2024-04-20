@@ -5,6 +5,7 @@ import { comparePassword, encryptPassword } from "../utils/encryption";
 
 import path from "path";
 import dotenv from "dotenv";
+import { nanoid } from "nanoid";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 class ServiceUsers {
@@ -20,7 +21,14 @@ class ServiceUsers {
   }
 
   async create(params: IUser) {
-    const user = await this._repoUsers.create(params);
+    const id = nanoid(16);
+    const { password } = params;
+    const encryptedPassword = encryptPassword(password);
+    const user = await this._repoUsers.create({
+      ...params,
+      password: encryptedPassword,
+      id: nanoid(16),
+    });
     return user;
   }
 

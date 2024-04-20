@@ -37,6 +37,35 @@ class ControllerUsers {
     };
   }
 
+  register() {
+    return async (req: Request, res: Response) => {
+      try {
+        const params = req.body;
+        const user = await this._serviceUsers.create({ ...params });
+
+        if (!user) {
+          return res.status(404).json({
+            success: false,
+            message: "Data gagal ditambahkan",
+          });
+        }
+
+        return res.status(201).json({
+          success: true,
+          message: "Data berhasil ditambahkan",
+          data: user,
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          success: false,
+          message: "Server error",
+          error: error,
+        });
+      }
+    };
+  }
+
   login() {
     return async (req: Request, res: Response) => {
       try {
