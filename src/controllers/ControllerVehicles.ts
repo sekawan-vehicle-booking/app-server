@@ -31,6 +31,13 @@ class ControllerVehicles {
         });
       } catch (e) {
         console.log(e);
+        return res.status(500).json({
+          meta: {
+            success: false,
+            message: "Server error",
+          },
+          error: e,
+        });
       }
     };
   }
@@ -58,6 +65,13 @@ class ControllerVehicles {
         });
       } catch (e) {
         console.log(e);
+        return res.status(500).json({
+          meta: {
+            success: false,
+            message: "Server error",
+          },
+          error: e,
+        });
       }
     };
   }
@@ -83,7 +97,16 @@ class ControllerVehicles {
           },
           data: result,
         });
-      } catch (e) {}
+      } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+          meta: {
+            success: false,
+            message: "Server error",
+          },
+          error: e,
+        });
+      }
     };
   }
 
@@ -111,6 +134,13 @@ class ControllerVehicles {
         });
       } catch (e) {
         console.log(e);
+        return res.status(500).json({
+          meta: {
+            success: false,
+            message: "Server error",
+          },
+          error: e,
+        });
       }
     };
   }
@@ -138,6 +168,13 @@ class ControllerVehicles {
         });
       } catch (e) {
         console.log(e);
+        return res.status(500).json({
+          meta: {
+            success: false,
+            message: "Server error",
+          },
+          error: e,
+        });
       }
     };
   }

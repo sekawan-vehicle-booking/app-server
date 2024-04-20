@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { IVehicle } from "../models/Vehicles";
 import RepoVehicles from "../repositories/RepoVehicles";
 
@@ -21,7 +22,7 @@ class ServiceVehicles {
   }
 
   async create(params: IVehicle) {
-    const vehicle = this._repoVehicles.create(params);
+    const vehicle = this._repoVehicles.create({ ...params, id: nanoid(16) });
     return vehicle;
   }
 
