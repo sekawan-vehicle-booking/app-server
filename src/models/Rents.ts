@@ -5,12 +5,12 @@ Model.knex(database);
 
 export interface IRent {
   id?: string;
-  idCar: string;
+  idVehicle: string;
   idEmployee: string;
   idAdmin: string;
   idSupervisor: string;
   purpose: string;
-  status: "accepted" | "rejected";
+  status: "pending" | "accepted" | "rejected" | "finished";
   startUsageDate: string;
   endUsageDate: string;
   oilConsumption?: number;

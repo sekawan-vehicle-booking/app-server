@@ -3,12 +3,30 @@ import RepoVehicles from "../../repositories/RepoVehicles";
 import ServiceVehicles from "../../services/ServiceVehicles";
 import ControllerVehicles from "../../controllers/ControllerVehicles";
 
+import RepoUsers from "../../repositories/RepoUsers";
+import ServiceUsers from "../../services/ServiceUsers";
+import ControllerUsers from "../../controllers/ControllerUsers";
+import RepoRents from "../../repositories/RepoRents";
+import ServiceRents from "../../services/ServiceRents";
+import ControllerRents from "../../controllers/ControllerRents";
+
 const router = Router();
 
 // Vehicles
 const repoVehicles = new RepoVehicles();
 const serviceVehicles = new ServiceVehicles(repoVehicles);
 const controllerVehicles = new ControllerVehicles(serviceVehicles);
+
+
+// Users
+const repoUsers = new RepoUsers();
+const serviceUsers = new ServiceUsers(repoUsers);
+const controllerUsers = new ControllerUsers(serviceUsers);
+
+// Rents
+const repoRents = new RepoRents();
+const serviceRents = new ServiceRents(repoRents);
+const controllerRents = new ControllerRents(serviceRents);
 
 // #region Authentication
 router.post("/auth/register");
@@ -35,10 +53,12 @@ router.put("/services/:id");
 router.delete("/services/:id");
 
 // #region Rents
-router.get("/rents");
-router.get("/rents/:id");
-router.post("/rents");
-router.put("/rents/:id");
-router.delete("/rents/:id");
+router.get("/rents", controllerRents.list());
+router.get("/rents/:id", controllerRents.findRent());
+router.get("/rents/vehicle/:id", controllerRents.findVehicleRents());
+router.get("/rents/user/:id", controllerRents.findUserRents());
+router.post("/rents", controllerRents.create());
+router.put("/rents/:id", controllerRents.update());
+router.delete("/rents/:id", controllerRents.delete());
 
 export default router;

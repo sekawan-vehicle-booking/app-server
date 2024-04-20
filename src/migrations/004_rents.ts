@@ -10,7 +10,9 @@ export async function up(knex: Knex): Promise<void> {
     table.string("idSupervisor", 16).notNullable();
 
     table.string("purpose", 255).notNullable();
-    table.enum("status", ["ongoing", "accepted", "rejected"]).notNullable();
+    table
+      .enum("status", ["pending", "accepted", "rejected", "finished"])
+      .notNullable();
     table.timestamp("startUsageDate").notNullable();
     table.timestamp("endUsageDate").notNullable();
     table.float("oilConsumption");
