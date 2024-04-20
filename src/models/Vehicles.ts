@@ -11,9 +11,9 @@ export interface IVehicles {
   model: string;
   color: string;
   plate: string;
-  image: string;
+  image?: string;
   capacity: number;
-  description: string;
+  description?: string;
   year: number;
   created_at?: string;
   updated_at?: string;
