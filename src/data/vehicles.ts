@@ -24,3 +24,5 @@ const vehicles = [
     year: 2023,
   },
 ];
+
+export default vehicles;
