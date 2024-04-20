@@ -1,6 +1,7 @@
 import { IUser } from "../models/Users";
 import { Request, Response } from "express";
 import ServiceUsers from "../services/ServiceUsers";
+import { authorizeJwt } from "../utils/encryption";
 
 class ControllerUsers {
   private _serviceUsers: ServiceUsers;
@@ -9,6 +10,7 @@ class ControllerUsers {
     this._serviceUsers = serviceUsers;
   }
 
+  //   #region List
   list() {
     return async (req: Request, res: Response) => {
       try {
@@ -37,6 +39,7 @@ class ControllerUsers {
     };
   }
 
+  //   #region Register
   register() {
     return async (req: Request, res: Response) => {
       try {
@@ -66,6 +69,7 @@ class ControllerUsers {
     };
   }
 
+  //   #region Login
   login() {
     return async (req: Request, res: Response) => {
       try {
@@ -99,6 +103,40 @@ class ControllerUsers {
           error: error,
         });
       }
+    };
+  }
+
+  check() {
+    return (req: Request, res: Response) => {
+      const authHeader = req.headers.authorization as string;
+      const token = authHeader && authHeader.split(" ")[1];
+      const response = authorizeJwt(token) as any;
+
+      if (response.name === "TokenExpiredError") {
+        return res.status(401).json({
+          message: "Token Expired. Please login",
+          data: response,
+        });
+      }
+
+      if (response.name === "JsonWebTokenError") {
+        return res.status(401).json({
+          message: "JWT must be provided",
+          data: response,
+        });
+      }
+
+      if (!response) {
+        return res.status(401).json({
+          message: "Unauthorized user",
+          data: response,
+        });
+      }
+
+      return res.status(200).json({
+        message: "Authorized user",
+        data: response,
+      });
     };
   }
 }

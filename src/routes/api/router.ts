@@ -21,6 +21,7 @@ const controllerUsers = new ControllerUsers(serviceUsers);
 // #region Authentication
 router.post("/auth/register", controllerUsers.register());
 router.post("/auth/login", controllerUsers.login());
+router.get("/auth/authorize-jwt", controllerUsers.check());
 
 // #region Users
 router.get("/users", controllerUsers.list());
