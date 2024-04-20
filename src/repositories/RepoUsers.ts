@@ -26,6 +26,11 @@ class RepoUsers {
     return user;
   }
 
+  async findByEmail(email: string) {
+    const user = Users.query().where({ email: email });
+    return user;
+  }
+
   async findByRole(role: string) {
     const user = Users.query().where({ role: role });
     return user;
