@@ -5,31 +5,31 @@ class RepoVehicles {
 
   // #region List
   async list() {
-    const vehicles = Vehicles.query();
+    const vehicles = await Vehicles.query();
     return vehicles;
   }
 
   //   #region Create
   async create(params: IVehicle) {
-    const vehicle = Vehicles.query().insert({ ...params });
+    const vehicle = await Vehicles.query().insert({ ...params });
     return vehicle;
   }
 
   //   #region Find
   async findById(id: string) {
-    const vehicle = Vehicles.query().findById(id);
+    const vehicle = await Vehicles.query().findById(id);
     return vehicle;
   }
 
   //   #region Update
   async update(id: string, params: IVehicle) {
-    const vehicle = Vehicles.query().findById(id).patch(params);
+    const vehicle = await Vehicles.query().findById(id).patch(params);
     return vehicle;
   }
 
   //   #region Delete
   async delete(id: string) {
-    const vehicle = Vehicles.query().deleteById(id);
+    const vehicle = await Vehicles.query().deleteById(id);
     return vehicle;
   }
 }

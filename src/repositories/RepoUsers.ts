@@ -5,46 +5,46 @@ class RepoUsers {
 
   // #region List
   async list() {
-    const users = Users.query();
+    const users = await Users.query();
     return users;
   }
 
   //   #region Create
   async create(params: IUser) {
-    const user = Users.query().insert({ ...params });
+    const user = await Users.query().insert({ ...params });
     return user;
   }
 
   //   #region Find
   async findById(id: string) {
-    const user = Users.query().findById(id);
+    const user = await Users.query().findById(id);
     return user;
   }
 
   async findByName(name: string) {
-    const user = Users.query().where({ name: name });
+    const user = await Users.query().where({ name: name });
     return user;
   }
 
   async findByEmail(email: string) {
-    const user = Users.query().where({ email: email });
+    const user = await Users.query().findOne({ email: email });
     return user;
   }
 
   async findByRole(role: string) {
-    const user = Users.query().where({ role: role });
+    const user = await Users.query().where({ role: role });
     return user;
   }
 
   //   #region Update
   async update(id: string, params: IUser) {
-    const user = Users.query().findById(id).patch(params);
+    const user = await Users.query().findById(id).patch(params);
     return user;
   }
 
   //   #region Delete
   async delete(id: string) {
-    const users = Users.query().deleteById(id);
+    const users = await Users.query().deleteById(id);
     return users;
   }
 }
