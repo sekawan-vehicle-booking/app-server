@@ -4,8 +4,6 @@ export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable("users", (table: Knex.TableBuilder) => {
     table.string("id", 16).primary();
     table.string("name", 255).notNullable();
-    table.string("email", 255).notNullable().unique();
-    table.string("password", 255).notNullable();
     table.enum("role", ["Employee", "Admin", "Supervisor"]).notNullable();
     table.timestamps(true, true);
   });
