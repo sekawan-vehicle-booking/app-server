@@ -21,6 +21,16 @@ class RepoUsers {
     return user;
   }
 
+  async findByName(name: string) {
+    const user = Users.query().where({ name: name });
+    return user;
+  }
+
+  async findByRole(role: string) {
+    const user = Users.query().where({ role: role });
+    return user;
+  }
+
   //   #region Update
   async update(id: string, params: IUser) {
     const user = Users.query().findById(id).patch(params);
