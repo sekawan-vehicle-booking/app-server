@@ -32,3 +32,5 @@ class ServiceUsers {
     // const validatePassword = comparePassword(password, user.password);
   }
 }
+
+export default ServiceUsers;
