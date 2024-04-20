@@ -79,6 +79,13 @@ class ControllerUsers {
           });
         }
 
+        if (typeof user !== "string") {
+          return res.status(404).json({
+            success: user.success,
+            message: user.message,
+          });
+        }
+
         return res.status(201).json({
           success: true,
           message: "Data berhasil ditemukan",
