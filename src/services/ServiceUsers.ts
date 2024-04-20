@@ -1,6 +1,11 @@
+import jwt from "jsonwebtoken";
 import { IUser } from "../models/Users";
 import RepoUsers from "../repositories/RepoUsers";
 import { comparePassword, encryptPassword } from "../utils/encryption";
+
+import path from "path";
+import dotenv from "dotenv";
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 class ServiceUsers {
   private _repoUsers: RepoUsers;
@@ -20,16 +25,33 @@ class ServiceUsers {
   }
 
   async login(email: string, password: string) {
-    const user = await this._repoUsers.findByEmail(email);
-    console.log(user);
+    const user = (await this._repoUsers.findByEmail(email)) as unknown as IUser;
 
     if (!user) {
       return false;
     }
 
-    return user;
+    if (!comparePassword(password, user.password)) {
+      return {
+        success: false,
+        message: "Password is wrong",
+      };
+    }
 
-    // const validatePassword = comparePassword(password, user.password);
+    const token = jwt.sign(
+      {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      process.env.JWT_SECRET_KEY as string,
+      {
+        expiresIn: "3h",
+      }
+    );
+
+    return token;
   }
 }
 
