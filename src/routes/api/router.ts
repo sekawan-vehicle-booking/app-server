@@ -2,7 +2,6 @@ import { Router, Request, Response } from "express";
 import RepoVehicles from "../../repositories/RepoVehicles";
 import ServiceVehicles from "../../services/ServiceVehicles";
 import ControllerVehicles from "../../controllers/ControllerVehicles";
-
 import RepoUsers from "../../repositories/RepoUsers";
 import ServiceUsers from "../../services/ServiceUsers";
 import ControllerUsers from "../../controllers/ControllerUsers";
@@ -28,11 +27,12 @@ const serviceRents = new ServiceRents(repoRents);
 const controllerRents = new ControllerRents(serviceRents);
 
 // #region Authentication
-router.post("/auth/register");
-router.post("/auth/login");
+router.post("/auth/register", controllerUsers.register());
+router.post("/auth/login", controllerUsers.login());
+router.get("/auth/authorize-jwt", controllerUsers.check());
 
 // #region Users
-router.get("/users");
+router.get("/users", controllerUsers.list());
 router.get("/users/:id");
 router.put("/users/:id");
 router.delete("/users/:id");
