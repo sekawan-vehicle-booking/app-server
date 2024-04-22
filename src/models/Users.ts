@@ -6,6 +6,8 @@ Model.knex(database);
 export interface IUser {
   id?: string;
   name: string;
+  email: string;
+  password: string;
   role: "Admin" | "Employee" | "Supervisor";
   created_at?: string;
   updated_at?: string;
