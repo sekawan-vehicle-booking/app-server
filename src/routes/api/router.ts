@@ -17,7 +17,6 @@ const repoVehicles = new RepoVehicles();
 const serviceVehicles = new ServiceVehicles(repoVehicles);
 const controllerVehicles = new ControllerVehicles(serviceVehicles);
 
-
 // Users
 const repoUsers = new RepoUsers();
 const serviceUsers = new ServiceUsers(repoUsers);
