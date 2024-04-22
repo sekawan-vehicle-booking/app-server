@@ -6,7 +6,7 @@ import router from "./src/routes/api/router";
 
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const allowedOrigins = ["http://localhost:5173"];
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
