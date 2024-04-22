@@ -6,7 +6,7 @@ import { comparePassword, encryptPassword } from "../utils/encryption";
 import path from "path";
 import dotenv from "dotenv";
 import { nanoid } from "nanoid";
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 class ServiceUsers {
   private _repoUsers: RepoUsers;
